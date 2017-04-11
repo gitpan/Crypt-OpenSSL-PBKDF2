@@ -1,4 +1,4 @@
-Crypto-OpenSSL-PBKDF2 version 0.02
+Crypto-OpenSSL-PBKDF2 version 0.04
 ==================================
 
 This is an XS-wrapper around OpenSSL's PKCS5 PBKDF2 function, used
@@ -24,12 +24,10 @@ at 0.9.8 with Perl 5.8.8 and 5.10.0.
 
 COPYRIGHT AND LICENCE
 
-The code in this module is released under GNU GPLv2.
+Copyright 2009 - 2015 R.Scussat - OpenDiogene Project.
 
-Copyright 2009 - 2010 R.Scussat - OpenDiogene Project.
-
-This program is free software; you can redistribute
-it and/or modify it under the terms of supplied license.
+Crypt::OpenSSL::PBKDF2 is free software; you may redistribute it
+and/or modify it under the terms of GNU GPLv2 (or later version) or Artistic License.
 
 The full text of the license can be found in the
 LICENSE file included with this module.

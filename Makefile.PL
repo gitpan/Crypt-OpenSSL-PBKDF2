@@ -10,7 +10,7 @@ WriteMakefile(
     	(
 		ABSTRACT_FROM	=> 'PBKDF2.pm', # retrieve abstract from module
 		AUTHOR			=> 'R.Scussat - OpenDiogene Project  <rscussat@dsplabs.net>',
-		LICENSE			=> 'gpl'
+		LICENSE			=> 'gplv2+ or artistic'
 		) :	()
 	),
     LIBS				=> ['-lcrypto -lssl '], # e.g., '-lm'

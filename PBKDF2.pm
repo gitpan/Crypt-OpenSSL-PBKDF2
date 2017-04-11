@@ -11,9 +11,9 @@ use AutoLoader;
 
 @ISA = qw(Exporter DynaLoader);
 
-@EXPORT_OK = qw( derive );
+@EXPORT_OK = qw( derive derive_bin );
 
-$VERSION = '0.02';
+$VERSION = '0.04';
 
 bootstrap Crypt::OpenSSL::PBKDF2 $VERSION;
 
@@ -32,7 +32,8 @@ Crypt::OpenSSL::PBKDF2 - wrapper for PBKDF2 keys derivation function of the Open
 
   use Crypt::OpenSSL::PBKDF2;
 
-  my $key = Crypt::OpenSSL::PBKDF2::derive($pass, $salt, $salt_len, $iter, $key_len);
+  $key1 = Crypt::OpenSSL::PBKDF2::derive($pass, $salt, $salt_len, $iter, $key_len);
+  $key2 = Crypt::OpenSSL::PBKDF2::derive_bin($pass_bin, $pass_len, $salt, $salt_len, $iter, $key_len);
 
 =head1 DESCRIPTION
 
@@ -48,20 +49,22 @@ None by default.
 
 =item derive
 
-This function, returns a derived key that is supposed to be cryptographically strong.
-It's been generated from a passphrase B<$pass>, a salt block B<$salt> (usually binary data) having a given length B<$salt_len>, and a number of iterations B<$iter> (usually > 1000, suggested 4000). The result will be a binary data string of requested length B<$out_len>; the derive function croaks if an error occurs.
+This function returns a derived key that is supposed to be cryptographically strong.
+The key will be generated from a passphrase B<$pass>, a salt block B<$salt> (usually binary data) of a given length B<$salt_len>, and a number of iterations B<$iter> (usually > 1000, suggested 4096). If the salt is empty (null) the salt length must be 0. The output is a binary data string of requested length B<$out_len>; the derive function croaks if any error occurs.
+
+=item derive_bin
+
+This function is like B<derive>, but accepts a binary password B<$pass_bin> of a given length B<$pass_len>. It's useful if you want to use an already hashed password for password. If password length is set to -1, then the password is assumed to be a string (like B<derive>) and length is automatically calculated; if used this way binary password are not allowed (or will be truncated on the first NUL occurrence).
 
 =back 
 
 =head1 SUPPORT
 
-Bugs should be reported via mailing list at
+To get some help or report bugs you should try the forum on the offical project site at
 
-L<http://www.opendiogene.it/mailman/listinfo/opendiogene-bugs>
+L<http://www.opendiogene.it>
 
-Some help may be obtained via mailing list at
-
-L<http://www.opendiogene.it/mailman/listinfo/opendiogene-users>
+or you may try to contact the author.
 
 =head1 AUTHOR
 
@@ -69,15 +72,13 @@ Riccardo Scussat - OpenDiogene Project E<lt>rscussat@dsplabs.netE<gt>
 
 =head1 LICENSE
 
-The code in this module is released under GNU GPLv2.
-
-This program is free software; you can redistribute
-it and/or modify it under the terms of supplied license.
+Crypt::OpenSSL::PBKDF2 is free software; you may redistribute it
+and/or modify it under the terms of GNU GPLv2 (or later version) or Artistic License.
 
 The full text of the license can be found in the
 LICENSE file included with this module.
 
 =head1 COPYRIGHT
 
-Copyright 2009-2010 R.Scussat - OpenDiogene Project.
+Copyright 2009-2015 R.Scussat - OpenDiogene Project.
 =cut
